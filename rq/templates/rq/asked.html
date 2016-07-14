@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h2>Questions by you</h2>
+	{% for q in aqs %}
+	<div class="panel panel-default">
+	    <div class="panel-heading">{{ q.q }}</div>
+	    <div class="panel-body">{{ q.a }}</div>
+	    <div class="panel-body"><a href="#">Link</a></div>
+  	</div>	
+	{% endfor %}
+{% endblock content %}

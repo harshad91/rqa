@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Q/A</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	{% load staticfiles %}
+</head>
+<body>
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Random Q/A</a>
+		</div>
+		<ul class="nav navbar-nav navbar-left">
+		{% if user.is_authenticated %}
+		<li class="{% if nbar == 'home' %}active{% endif %}"><a href="{% url 'rq:rq' %}">Home</a></li>
+		<li class="{% if nbar == 'sq' %}active{% endif %}"><a href="{% url 'rq:sq' %}" name="SubmitQuestion">Submit a Question</a></li>
+		<li class="{% if nbar == 'aq' %}active{% endif %}"><a href="{% url 'rq:aq' %}" name="AskedQuestions">Your Questions</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+		<li class="navbar-text">Welcome {{ user }}!</li>
+		<li class="{% if nbar == 'logout' %}active{% endif %}"><a href="{% url 'logout' %}" name="Logout">Logout</a></li>
+		{% endif %}
+		</ul>
+	</div>
+	</nav>
+	<div class="container-fluid">
+	{% block content %}
+	{% endblock content %}
+	</div>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{% static 'rq/js/rq.js' %}"></script>
+</body>
+</html>

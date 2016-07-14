@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h2>Questions for you</h2>
+	{% for q in qs %}
+	<div class="panel panel-default">
+	    <div class="panel-heading" id="q-{{ q.pk }}">{{ q.q }}</div>
+	    <div class="panel-body" id="suba-{{ q.pk }}">{{ q.a }}</div>
+	    <div class="panel-body">
+	    	<form action="{% url 'rq:rq' %}" method="POST" role="form" id="form{{ q.pk }}">
+	    		{% csrf_token %}
+	    		<textarea class="form-control" cols="40" id="id_a-{{ q.pk }}" name="q" rows="5" placeholder="Submit or edit your answer.." style="display:{% if q.a %}none{% endif %}" >{{ q.a }}</textarea>
+	    		<hr/>
+	    		<input type="submit" value="submit" class="btn btn-link submit" id="submit-{{ q.pk }}">
+	    		{% if q.a %}
+	    		<a href="#" id="edit-{{ q.pk }}" class="btn btn-link edit" value="edit">edit</a>
+	    		{% endif %}
+	    		</div>
+	    	</form>
+  	</div>	
+	{% endfor %}
+{% endblock content %}
+
+

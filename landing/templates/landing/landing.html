@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h1>Login/Register</h1>
+	<form action="{% url 'landing' %}" method="POST" role="form">
+		{% csrf_token %}
+		<div class="form-group">
+		{{ form.username.errors }}
+		{{ form.username.label_tag }}
+		{{ form.username }}
+		</div>
+		<div class="form-group">
+		{{ form.password.errors }}
+		{{ form.password.label_tag }}
+		{{ form.password }}
+		</div>
+		<br>
+		<input type="submit" value="login/register" class="btn btn-default">
+	</form>
+{% endblock content %}
