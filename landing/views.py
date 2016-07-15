@@ -11,12 +11,15 @@ from django.contrib.auth import logout
 def land(request):
 	if request.method == 'POST':
 		form = UserForm(request.POST)
-		new_user= authenticate(username=request.POST['username'], password=request.POST['password'])
+		new_user= authenticate(username=request.POST['username'], 
+			password=request.POST['password'])
 		if not new_user:
 			if not form.is_valid():
 				return render(request,'landing/landing.html', {'form': form})
-			new_user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
-			new_user = authenticate(username=request.POST['username'], password=request.POST['password'])
+			new_user = User.objects.create_user(username=request.POST['username'], 
+				password=request.POST['password'])
+			new_user = authenticate(username=request.POST['username'], 
+				password=request.POST['password'])
 			if new_user.is_authenticated():
 				login(request, new_user)
 				return HttpResponseRedirect(reverse('rq:rq'))
@@ -33,4 +36,5 @@ def land(request):
 def logout_view(request):
 	logout(request)
 	form = UserForm()
-	return render(request,'landing/landing.html', {'form': form, 'nbar': 'logout'})
+	return render(request,'landing/landing.html', 
+					{'form': form, 'nbar': 'logout'})

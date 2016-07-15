@@ -11,3 +11,7 @@ class Question(models.Model):
 
 	def __str__(self):
 		return self.q
+
+class Profile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	reputation = models.IntegerField(default=0)
