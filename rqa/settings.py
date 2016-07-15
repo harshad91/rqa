@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'landing',
     'rq',
     'debug_toolbar',
+    'djcelery',
+    'kombu.transport.django',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -133,3 +135,8 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_URL = '/'
+
+# Celery
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'django://'

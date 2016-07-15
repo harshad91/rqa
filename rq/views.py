@@ -5,6 +5,7 @@ from .models import Question
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse
+from .tasks import assignQuestion
 
 # Create your views here.
 @login_required
@@ -33,6 +34,7 @@ def submitq(request):
 			return render(request, 'rq/submit.html', {'form': form})
 		q=Question(q=request.POST['q'], asker=request.user)
 		q.save()
+		assignQuestion.delay(q)
 		return HttpResponseRedirect(reverse('rq:aq'))
 	else:
 		form = QuestionForm()
