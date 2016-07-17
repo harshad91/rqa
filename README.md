@@ -25,6 +25,7 @@ The random assignment of a question is done with celery as task queue processor.
 * `. venv/bin/activate`
 * `git clone https://github.com/harshad91/rqa.git`
 * `cd rqa`
+* `pip install -r requirements.txt`
 * `python manage.py runserver`
 
 ### Celery worker process (in a new terminal window)
